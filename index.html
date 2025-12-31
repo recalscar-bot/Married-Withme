@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Undangan Pernikahan | Sulthan & Ketrin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box}
+    body{margin:0;font-family:'Poppins',sans-serif;background:#f5f3ef;color:#333;overflow:hidden}
+    .container{max-width:420px;margin:auto;background:#fff}
+
+    /* OPENING POPUP */
+    .overlay{position:fixed;inset:0;background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),url('https://images.unsplash.com/photo-1519741497674-611481863552');background-size:cover;background-position:center;display:flex;align-items:center;justify-content:center;z-index:999}
+    .popup{background:rgba(255,255,255,.95);padding:35px 25px;border-radius:18px;text-align:center;animation:popup .8s ease}
+    @keyframes popup{0%{transform:scale(.6);opacity:0}100%{transform:scale(1);opacity:1}}
+    .popup h1{font-family:'Playfair Display',serif;margin:10px 0}
+    .btn-open{background:#b79b5b;color:#fff;border:none;padding:12px 30px;border-radius:30px;font-size:14px;cursor:pointer}
+
+    /* HERO */
+    .hero{background:linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),url('https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e');background-size:cover;background-position:center;color:#fff;text-align:center;padding:95px 20px}
+    .hero h1{font-family:'Playfair Display',serif;font-size:38px;margin:10px 0}
+
+    /* SECTION & SCROLL ANIMATION */
+    .section{padding:35px 20px;text-align:center;opacity:0;transform:translateY(30px);transition:all .8s ease}
+    .section.show{opacity:1;transform:none}
+    h2{font-family:'Playfair Display',serif;margin-bottom:15px}
+
+    /* COUNTDOWN */
+    .countdown{display:flex;justify-content:center;gap:10px;margin-top:15px}
+    .time{background:#f0ede7;padding:10px;border-radius:12px;width:70px}
+    .time span{font-size:20px;font-weight:600}
+
+    /* BUTTON */
+    .btn{display:inline-block;background:#b79b5b;color:#fff;padding:12px 28px;border-radius:30px;text-decoration:none;margin:8px}
+
+    /* GALLERY */
+    .gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+    .gallery img{width:100%;border-radius:12px}
+
+    footer{padding:25px;text-align:center;font-size:12px;color:#777}
+  </style>
+</head>
+<body>
+
+<!-- OPENING -->
+<div class="overlay" id="overlay">
+  <div class="popup">
+    <p>Undangan Pernikahan</p>
+    <h1>Sulthan & Ketrin</h1>
+    <p>Sabtu, 20 Januari 2026</p>
+    <button class="btn-open" onclick="openInvite()">💍 Buka Undangan</button>
+  </div>
+</div>
+
+<!-- MUSIK -->
+<audio id="music" loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-tenderness.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+
+  <section class="hero">
+    <p>UNDANGAN PERNIKAHAN</p>
+    <h1>Sulthan & Ketrin</h1>
+    <p>Sabtu, 20 Januari 2026</p>
+  </section>
+
+  <section class="section">
+    <h2>Menuju Hari Bahagia</h2>
+    <div class="countdown">
+      <div class="time"><span id="days">0</span><br>Hari</div>
+      <div class="time"><span id="hours">0</span><br>Jam</div>
+      <div class="time"><span id="minutes">0</span><br>Menit</div>
+      <div class="time"><span id="seconds">0</span><br>Detik</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Akad & Resepsi</h2>
+    <p><strong>Sabtu, 20 Januari 2026</strong><br>Pukul 10.00 WIB</p>
+    <p>Gedung Serbaguna<br>Jakarta</p>
+    <a class="btn" href="https://maps.google.com" target="_blank">📍 Google Maps</a>
+  </section>
+
+  <section class="section">
+    <h2>Galeri Kami</h2>
+    <div class="gallery">
+      <img src="https://iili.io/fXvuda2.jpg">
+      <img src="https://iili.io/fXvuNMG.jpg">
+      <img src="https://iili.io/fXvaNV9.jpg">
+      <img src="https://iili.io/fXvckXI.jpg">
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Konfirmasi Kehadiran</h2>
+    <a class="btn" href="https://wa.me/6281234567890?text=Saya%20akan%20hadir%20di%20acara%20pernikahan" target="_blank">💬 RSVP WhatsApp</a>
+    <h2 style="margin-top:25px">Amplop Digital</h2>
+    <p>BCA<br><strong>1234567890</strong><br>a.n Sulthan</p>
+    <p>DANA / OVO<br><strong>081234567890</strong></p>
+  </section>
+
+  <footer>
+    © 2025 Sulthan & Ketrin • Undangan Digital Elegan
+  </footer>
+</div>
+
+<script>
+  function openInvite(){
+    document.getElementById('overlay').style.display='none';
+    document.body.style.overflow='auto';
+    document.getElementById('music').play();
+  }
+
+  const targetDate = new Date('April 20, 2025 10:00:00').getTime();
+  setInterval(()=>{
+    const now=new Date().getTime();
+    const d=targetDate-now;
+    days.innerText=Math.floor(d/(1000*60*60*24));
+    hours.innerText=Math.floor((d%(1000*60*60*24))/(1000*60*60));
+    minutes.innerText=Math.floor((d%(1000*60*60))/(1000*60));
+    seconds.innerText=Math.floor((d%(1000*60))/1000);
+  },1000);
+
+  const sections=document.querySelectorAll('.section');
+  window.addEventListener('scroll',()=>{
+    sections.forEach(sec=>{
+      const top=sec.getBoundingClientRect().top;
+      if(top<window.innerHeight-80)sec.classList.add('show');
+    });
+  });
+</script>
+
+</body>
+</html>
